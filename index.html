@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Note App</title>
+  <style>
+    body {
+      font-family: Georgia, 'Times New Roman', Times, serif, sans-serif;
+      background: #f4f4f9;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    #noteInput {
+      width: 80%;
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #addBtn {
+      padding: 10px 15px;
+      background: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #addBtn:hover {
+      background: #f18cca;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      background: #fff;
+      margin: 5px 0;
+      padding: 10px;
+      border-radius: 5px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .deleteBtn {
+      background: #e74c3c;
+      color: white;
+      border: none;
+      padding: 5px 10px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .deleteBtn:hover {
+      background: #c0392b;
+    }
+  </style>
+</head>
+<body>
+  <h1>📝 My Note App</h1>
+  <div style="text-align:center;">
+    <input type="text" id="noteInput" placeholder="Write a note...">
+    <button id="addBtn">Add Note</button>
+  </div>
+  <ul id="noteList"></ul>
+
+  <script>
+    const addBtn = document.getElementById("addBtn");
+    const noteInput = document.getElementById("noteInput");
+    const noteList = document.getElementById("noteList");
+
+    addBtn.addEventListener("click", () => {
+      const noteText = noteInput.value.trim();
+      if (noteText !== "") {
+        const li = document.createElement("li");
+        li.textContent = noteText;
+
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "Delete";
+        deleteBtn.className = "deleteBtn";
+        deleteBtn.onclick = () => li.remove();
+
+        li.appendChild(deleteBtn);
+        noteList.appendChild(li);
+
+        noteInput.value = "";
+      }
+    });
+  </script>
+</body>
+</html>
